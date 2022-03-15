@@ -13,6 +13,6 @@ Clone Git repository or download zip file
 
 Go to project folder
 
-Run _'npm init'_
+Run _'npm i'_
 
 Then run _'ng serve'_
