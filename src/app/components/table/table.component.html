@@ -1,0 +1,78 @@
+<div class="container" *ngIf="!isLoading">
+    <div class="title">Market Data</div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Key data</th>
+                <th>{{quoteName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div>Last</div>
+                    <div>Close</div>
+                </td>
+                <td>
+                    <div>{{values[0]['CLOSE_ADJ_NORM'].v | number: '1.0-5': 'es-ES'}}</div>
+                    <div>{{values[0]['LVAL_NORM'].v | number: '1.0-5': 'es-ES'}}</div>
+                </td>
+                <td>
+                    <div>{{values[0]['LVAL_NORM'].d | date: 'dd/MM/yyyy'}} - {{values[0]['LVAL_NORM'].d | date:
+                        'HH:mm:ss':"UTC+0"}}
+                    </div>
+                    <div>{{values[0]['CLOSE_ADJ_NORM'].d | date: 'dd/MM/yyyy'}} - {{values[0]['CLOSE_ADJ_NORM'].d |
+                        date:
+                        'HH:mm:ss':"UTC+0"}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Day Change %</div>
+                    <div>Day Change</div>
+                </td>
+                <td>
+                    <div [class.green-color]="(values[0]['NC2_PR_NORM'].v)>=0"
+                        [class.red-color]="(values[0]['NC2_PR_NORM'].v)<0">
+                        {{(values[0]['NC2_PR_NORM'].v)>=0?'+':''}}{{values[0]['NC2_PR_NORM'].v | number: '1.0-2': 'es-ES'}}%
+                    </div>
+                <div [class.green-color]="(values[0]['NC2_NORM'].v)>=0" [class.red-color]="(values[0]['NC2_NORM'].v)<0">
+                    {{(values[0]['NC2_NORM'].v)>=0?'+':''}}{{values[0]['NC2_NORM'].v | number: '1.0-5': 'es-ES'}}
+                </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Volume</div>
+                    <div>Turnover</div>
+                </td>
+                <td>
+                    <div>{{values[0]['VOL'].v | number: '1.0-0':'es-ES'}}{{(values[0]['VOL'].v) > million?' M':''}}</div>
+                    <div>{{values[0]['TUR'].v | number: '1.0-0':'es-ES'}}{{(values[0]['TUR'].v) > million?' M':''}}</div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>Previous year close</div>
+                    <div>YTD%</div>
+                </td>
+                <td>
+                    <div>{{values[0]['PY_CLOSE'].v | number:'1.0-5': 'es-ES'}}</div>
+                    <div [class.green-color]="(values[0]['YTD_PR_NORM'].v)>=0"
+                        [class.red-color]="(values[0]['YTD_PR_NORM'].v)<0">
+                        {{(values[0]['YTD_PR_NORM'].v)>=0?'+':''}}{{values[0]['YTD_PR_NORM'].v | number: '1.0-2':'es-ES'}}%
+                    </div>
+                </td>
+                <td>
+                    <div>{{values[0]['PY_CLOSE'].d | date: 'dd/MM/yyyy':''}} - {{values[0]['PY_CLOSE'].d | date:
+                        'HH:mm:ss':"UTC+0"}}
+                    </div>
+                    <div>&nbsp;</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
